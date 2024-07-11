@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, avoid_unnecessary_containers
 import 'package:flutter/material.dart';
+import 'package:task_3/questions/lest.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -51,7 +52,7 @@ class _LoginState extends State<Login> {
                       decoration: InputDecoration(
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50)),
-                          hintText: "Username",
+                          hintText: "User name",
                           prefixIcon: Icon(Icons.person)),
                     ),
                   ),
@@ -99,7 +100,9 @@ class _LoginState extends State<Login> {
                     width: 170,
                     height: 35,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => List(),));
+                      },
                       child: Text(
                         "Login",
                         style: TextStyle(

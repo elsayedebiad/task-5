@@ -1,11 +1,12 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
 
 import 'package:flutter/material.dart';
 
 import 'login.dart';
-
 class Home extends StatelessWidget {
-  const Home({super.key});
+const  Home({super.key});
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,16 +49,21 @@ class Home extends StatelessWidget {
                 ),
                 Spacer(),
                 Container(
-                  height: 35,
+                    height: 35,
                     margin: EdgeInsets.all(25),
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Login()));
                       },
-                      child: Text("Start",style: TextStyle(color: Colors.white,fontFamily: 'elsayed2'),),
+                      child: Text(
+                        "Start",
+                        style: TextStyle(
+                            color: Colors.white, fontFamily: 'elsayed2'),
+                      ),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green,
+                          backgroundColor: Colors.green,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(7))),
                     ))
