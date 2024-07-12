@@ -1,7 +1,20 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last
 
-class IQ extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:task_3/screens/score.dart';
+
+import '../screens/quiz_app_data.dart';
+
+class IQ extends StatefulWidget {
   const IQ({super.key});
+
+  @override
+  State<IQ> createState() => _IQState();
+}
+
+class _IQState extends State<IQ> {
+  int _questionsIndex = 0;
+  int totalScore = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +34,12 @@ class IQ extends StatelessWidget {
           "IQ Quiz",
           style: TextStyle(color: Colors.white, fontFamily: 'elsayed2'),
         ),
-        backgroundColor: Color.fromARGB(255, 62, 84, 63),
+        backgroundColor: Color.fromARGB(255, 51, 59, 65),
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        color: Color.fromARGB(255, 102, 155, 104),
+        color: Color.fromARGB(255, 70, 76, 80),
         child: Column(
           children: [
             Container(
@@ -42,54 +55,54 @@ class IQ extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "1 - What is the difference between a StatelessWidget and a StatefulWidget ? ",
-                      style: TextStyle(color: Colors.white),
+                      "Questions numbers ${_questionsIndex + 1}",
+                      style: TextStyle(
+                          color: const Color.fromARGB(255, 164, 147, 147)),
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Container(
-                      margin: EdgeInsets.all(5),
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        child: Padding(
-                          padding: const EdgeInsets.all(5.0),
-                          child: Text(
-                              "a. StatelessWidget is used for displaying static"),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25))),
+                      child: Text(
+                        iqQuestions[_questionsIndex]['question'],
+                        style: TextStyle(color: Colors.white, fontSize: 13),
                       ),
                     ),
+                    for (int i = 0;
+                        i <
+                            (iqQuestions[_questionsIndex]['answers'] as List)
+                                .length;
+                        i++)
+                      Container(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              totalScore = totalScore +
+                                  iqQuestions[_questionsIndex]['answers'][i]
+                                      ['score'] as int;
+                              if (_questionsIndex < (iqQuestions.length - 1)) {
+                                setState(() {
+                                  _questionsIndex++;
+                                });
+                              } else {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute<void>(
+                                    builder: (BuildContext context) =>
+                                        ScoreScreen(
+                                      totalScore: totalScore,
+                                      numberOfQuestions: iqQuestions.length,
+                                    ),
+                                  ),
+                                );
+                              }
 
-                    Container(
-                      margin: EdgeInsets.all(5),
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        child: Padding(
-                          padding: const EdgeInsets.all(5.0),
-                          child: Text(
-                              "b. StatelessWidget is used for displaying static"),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25))),
-                    )),
-
-                    Container(
-                      margin: EdgeInsets.all(5),
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        child: Padding(
-                          padding: const EdgeInsets.all(5.0),
-                          child: Text(
-                              "c. StatelessWidget is used for displaying static"),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25))),
-                    )),
-
-                    
+                              print('your index is ${_questionsIndex}');
+                              print('your total score is ${totalScore}');
+                            },
+                            child: Text(iqQuestions[_questionsIndex]['answers']
+                                [i]['ans'])),
+                      )
                   ],
                 ),
               ),

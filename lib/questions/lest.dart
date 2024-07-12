@@ -10,14 +10,14 @@ class List extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 172, 207, 173),
+      backgroundColor: Color.fromARGB(255, 51, 59, 65),
       appBar: AppBar(
         elevation: 10,
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Icon(
-              Icons.account_circle,
+              Icons.account_circle,color: Colors.white,
               size: 35,
             ),
           )
@@ -27,11 +27,11 @@ class List extends StatelessWidget {
           child: Text(
             "Quiz app",
             style:
-                TextStyle(fontFamily: 'elsayed1', fontWeight: FontWeight.w900),
+                TextStyle(fontFamily: 'elsayed1', fontWeight: FontWeight.w500,color: Colors.white),
           ),
         ),
         automaticallyImplyLeading: false,
-        backgroundColor: Color.fromARGB(255, 121, 176, 123),
+        backgroundColor: Color.fromARGB(255, 51, 59, 65),
       ),
       body: SingleChildScrollView(
         child: Expanded(
@@ -40,21 +40,21 @@ class List extends StatelessWidget {
             Center(
               child: Column(
                 children: [
-                  InkWell(
+                  GestureDetector(
                       onTap: () {
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>IQ()));
                       },
                       child: QList(
                         name: "IQ Quiz",
-                        color: Color.fromARGB(255, 80, 128, 82),
+                        color: Color.fromARGB(255, 44, 45, 50),
                       )),
                   QList(
                     name: "Sport Quiz",
-                    color: Color.fromARGB(255, 70, 87, 71),
+                    color: Color.fromARGB(255, 41, 47, 42),
                   ),
                   QList(
                     name: "History",
-                    color: Color.fromARGB(255, 79, 99, 109),
+                    color: Color.fromARGB(255, 56, 68, 73),
                   )
                 ],
               ),

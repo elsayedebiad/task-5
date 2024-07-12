@@ -9,32 +9,34 @@ class Login extends StatefulWidget {
   State<Login> createState() => _LoginState();
 }
 
+
 class _LoginState extends State<Login> {
+  GlobalKey<FormState> _formKey = GlobalKey();
+
   bool? isChecked = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
+      backgroundColor: Color.fromARGB(255, 49, 53, 49),
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        backgroundColor: Color.fromARGB(255, 49, 53, 49),
         automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
-                width: 160,
-                margin: EdgeInsets.only(bottom: 80, top: 35),
-                child: Image.asset("assets/photos/alien.png")),
+              width: 160,
+              margin: EdgeInsets.only(bottom: 80, top: 35),
+              // child: Image.asset("assets/photos/alien.png"),
+            ),
             Container(
               width: double.infinity,
-              height: MediaQuery.sizeOf(context).height * 0.60,
+              margin: EdgeInsets.all(10),
+              height: MediaQuery.sizeOf(context).height * 0.70,
               decoration: BoxDecoration(
                 color: Color(0xffEFECEC),
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(50),
-                  topRight: Radius.circular(50),
-                ),
+                borderRadius: BorderRadius.circular(25),
               ),
               child: Column(
                 children: [
@@ -48,7 +50,14 @@ class _LoginState extends State<Login> {
                   ),
                   Container(
                     margin: EdgeInsets.all(25),
-                    child: TextField(
+                    child: TextFormField(
+                      key: _formKey,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter  user name ';
+                        }
+                        return null;
+                      },
                       decoration: InputDecoration(
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50)),
@@ -58,7 +67,14 @@ class _LoginState extends State<Login> {
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 25, right: 25),
-                    child: TextField(
+                    child: TextFormField(
+                      // key: _formKey,
+                      // validator: (value) {
+                      //   if (value!.isEmpty) {
+                      //     return 'Please enter your password ';
+                      //   }
+                      //   return null;
+                      // },
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50)),
@@ -101,7 +117,12 @@ class _LoginState extends State<Login> {
                     height: 35,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => List(),));
+                        if (_formKey.currentState!.validate()) {
+                          print("Valid");
+                        } else {
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (context) => List()));
+                        }
                       },
                       child: Text(
                         "Login",
@@ -124,11 +145,14 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                   SizedBox(
-                    height: 5,
+                    height: 15,
                   ),
                   Text(
                     "Use Touch ID",
                     style: TextStyle(fontFamily: 'elsayed2'),
+                  ),
+                  SizedBox(
+                    height: 90,
                   ),
                   Row(
                     children: [

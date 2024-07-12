@@ -26,7 +26,7 @@ class QList extends StatelessWidget {
               child: Text(
               name,
                 style: TextStyle(
-                    color: Color.fromARGB(255, 216, 212, 212),
+                    color: Color.fromARGB(255, 255, 255, 255),
                     fontFamily: 'elsayed2',
                     fontSize: 23),
               )),
